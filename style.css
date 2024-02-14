@@ -1,5 +1,5 @@
 body {
-  background-color: darkblue;
+  background-color: blue;
 }
 
 #text {
@@ -41,6 +41,18 @@ body {
   color: white;
   padding: 5px;
   background-color: red;
+}
+
+#gameimage{
+  background-color: blue;
+  width:50%;
+  height:500px;
+  margin: 0 auto;
+  background-image: url(images/start.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size: contain;
+  background-position: center;
 }
 
 .stat {

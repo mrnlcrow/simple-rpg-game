@@ -17,6 +17,7 @@ const goldText=document.querySelector('#goldText');
 const monsterStats=document.querySelector('#monsterStats');
 const monsterNameText=document.querySelector('#monsterName');
 const monsterHealthText=document.querySelector('#monsterHealth');
+const bgImage=document.querySelector('#gameimage');
 
 // Array of Objects
 const weapons=[
@@ -62,49 +63,58 @@ const locations=[
         name:"town square",
         "button text":["Go to store","Go to cave","Fight dragon"] , //".." here because of space
         "button functions":[goStore,goCave,fightDragon],
-        text:"You are in the town square."
+        text:"You are in the town square.",
+        image:"url('images/square.png')"
     },
     {
         name:"store",
         "button text":["Buy 10 health (10 gold)","Buy weapon (30 gold)","Go to town square"] , //".." here because of space
         "button functions":[buyHealth,buyWeapon,goTown],
-        text:"You entered the store."
+        text:"You entered the store.",
+        image:"url('images/store.jpg')"
     },
     {
         name:"cave",
         "button text":["Fight Slime","Fight Beast","Go to town square"] , //".." here because of space
         "button functions":[fightSlime,fightBeast,goTown],
-        text:"You entered the cave. You see some monsters"
+        text:"You entered the cave. You see some monsters",
+        image:"url('images/cave.png')"
     },
     {
         name:"fight",
         "button text":["Attack","Dodge","Run"] , 
         "button functions":[attack,dodge,goTown],
-        text:"You are fighting a monster."
+        text:"You are fighting a monster.",
+        image:""
     },
     {
         name:"kill monster",
         "button text":["Go to town square","Go to town square","Go to town square"] , 
         "button functions":[goTown,goTown,easterEgg],
-        text:'The monster screams, "ARG!" as it dies. You gain Experience points and find gold.'
+        text:'The monster screams, "ARG!" as it dies. You gain Experience points and find gold.',
+        image:''
     },
     {
         name:"lose",
         "button text":["Replay!","Replay!!!","Replay!!!!!"] , 
         "button functions":[restart,restart,restart],
-        text:"You die. 💀"
+        text:"You die. 💀",
+        image:"url('images/death.gif')"
     },
     {
         name:"win",
         "button text":["Replay!","Replay!!!","Replay!!!!!"] , 
         "button functions":[restart,restart,restart],
-        text:"YOU DEFEATED THE DRAGON. YOU WIN THE GAME!🎉"
+        text:"YOU DEFEATED THE DRAGON. YOU WIN THE GAME!🎉",
+        image:"url('images/win.gif')"
     },
     {
         name:"easter egg",
         "button text":["2","8","Go to town square"] , 
         "button functions":[pickTwo,pickEight,goTown],
         text:"Easter egg: Pick a number above. Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win."
+        ,
+        image:"url('images/easteregg.gif')"
     }
 
 ];
@@ -123,10 +133,12 @@ function update(location){ //Here, 'location'  is an object
     button2.onclick=location["button functions"][1];
     button3.onclick=location["button functions"][2];
     text.innerText=location.text; // Because of one word key of the object OR simply, location["text"] also, innerHTML used here (locations[7])
+    bgImage.style.backgroundImage=location.image;
 }
 
 function goTown(){
     update(locations[0]);
+
 }
 
 function goStore(){
@@ -193,6 +205,7 @@ function fightBeast(){
 }
 
 function fightDragon(){
+    bgImage.style.backgroundImage="url('images/dragon.gif')"
     fighting=2;
     goFight();
 }
