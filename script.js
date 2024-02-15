@@ -3,7 +3,7 @@ let xp=0;
 let health=100;
 let gold=50;
 let currentWeapon=0; //stores the index of the weapon
-let fighting;
+let fighting; // Stores the index of the monster
 let monsterHealth;
 let inventory=["stick"];
 
@@ -92,7 +92,7 @@ const locations=[
         "button text":["Go to town square","Go to town square","Go to town square"] , 
         "button functions":[goTown,goTown,easterEgg],
         text:'The monster screams, "ARG!" as it dies. You gain Experience points and find gold.',
-        image:''
+        image:"url('images/monster-kill.gif')"
     },
     {
         name:"lose",
@@ -205,12 +205,19 @@ function fightBeast(){
 }
 
 function fightDragon(){
-    bgImage.style.backgroundImage="url('images/dragon.gif')"
     fighting=2;
     goFight();
 }
 
 function goFight(){
+    if(fighting===0){
+        locations[3].image="url('images/slime.gif')";
+    }else if (fighting===1){
+        locations[3].image="url('images/fanged-beast.gif')";
+    }else if(fighting===2){
+        locations[3].image="url('images/dragon.gif')";
+    }
+
     update(locations[3]);
     monsterHealth=monsters[fighting].health; // All 'monsterHealth' and 'monsters array' and 'fighting' are globally scoped
     monsterStats.style.display="block";
@@ -223,10 +230,10 @@ function attack(){
     text.innerText+= " You attack it with your "+ weapons[currentWeapon].name+".";
     if(isMonsterHit()){  //80 percent of the time it should hit
         health-=getMonsterAttackValue(monsters[fighting].level);
+        monsterHealth-= weapons[currentWeapon].power + Math.floor(Math.random()*xp)+1;
     }else{
-        text.innerText+=" You Miss. ";
+        text.innerText+=" You Both Miss. ";
     }
-    monsterHealth-= weapons[currentWeapon].power + Math.floor(Math.random()*xp)+1;
     healthText.innerText=health;
     monsterHealthText.innerText=monsterHealth;
     if (health<=0){
