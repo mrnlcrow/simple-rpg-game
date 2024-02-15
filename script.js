@@ -96,14 +96,14 @@ const locations=[
     },
     {
         name:"lose",
-        "button text":["Replay!","Replay!!!","Replay!!!!!"] , 
+        "button text":["Replay!","Replay!","Replay!"] , 
         "button functions":[restart,restart,restart],
         text:"You die. 💀",
         image:"url('images/death.gif')"
     },
     {
         name:"win",
-        "button text":["Replay!","Replay!!!","Replay!!!!!"] , 
+        "button text":["Replay!","Replay!","Replay!"] , 
         "button functions":[restart,restart,restart],
         text:"YOU DEFEATED THE DRAGON. YOU WIN THE GAME!🎉",
         image:"url('images/win.gif')"
@@ -271,10 +271,16 @@ function defeatMonster(){
 }
 
 function lose(){
+    button1.remove();
+    button2.remove();
+    button3.style.cssText="margin: 0 auto;"
     update(locations[5]);
 }
 
 function winGame(){
+    button1.remove();
+    button2.remove();
+    button3.style.cssText="margin: 0 auto;"
     update(locations[6]);
 }
 

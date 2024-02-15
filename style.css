@@ -47,7 +47,8 @@ body {
   background-color: blue;
   width:50%;
   height:500px;
-  margin: 0 auto;
+  margin: 0 auto; 
+  /* This is used to center the div */
   background-image: url(images/start.jpg);
   background-repeat: no-repeat;
   background-size: cover;
